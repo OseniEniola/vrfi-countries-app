@@ -7,7 +7,7 @@
       border: 1px solid #ccc;
       border-radius: 18px;
       padding: 1.2rem 1.2rem;
-      font-size: 0.73rem;
+      font-size: 1rem;
       margin-top: 4px;
       outline: none;
       transition: border-color 0.3s ease-in-out;
@@ -38,6 +38,9 @@
       color: rgba(32, 37, 67,0.35);
       transition: all 0.3s ease-in-out;
       pointer-events: none;
+      &:focus{
+        top: 40%
+      }
     }
 
     .toggle-password{

@@ -40,7 +40,7 @@ const Button: FC<ButtonType> = ({
     }
  
     return (
-      <button id={id}  style={{ ...style.BASE, ...(style[type] || {}) }} disabled={disable} onClick={onClick} className={`${className} d-flex flex justify-content-center align-items-center gap-2`}>
+      <button id={id}  style={{ ...style.BASE, ...(style[type] || {}) }} disabled={disable} onClick={onClick} className={`${className} custom-button d-flex flex justify-content-center align-items-center gap-2`}>
         {position === 'left' && <>{isLoading && <Spinner size={'sm'} />} </>} {children}{' '}
         {position === 'right' && <>{isLoading && <Spinner size={'sm'} />} </>}
       </button>

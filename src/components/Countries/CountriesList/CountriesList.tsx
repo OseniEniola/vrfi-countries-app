@@ -1,7 +1,7 @@
 import { DropdownBtn } from '@/components/Buttons';
 import style from './CountriesList.module.scss';
 import { SearchInputField } from '@/components/InputFields/SearchInputField';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Country } from '@/services/models/Countries.dto';
 import {
   useGetAllContinentsQuery,
@@ -12,54 +12,55 @@ import { useGetCountryByRegionMutation } from '@/services/hooks/countries/useCou
 import { Link } from 'react-router-dom';
 
 const CountriesList = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isSearching, SetIsSearching] = useState(false);
-  const [countriesCopy, SetCountriesCopy] = useState<Country[]>([]);
-
-  const { data: countries, isLoading } = useGetAllCountriesQuery();
-  const { data: continents, isLoading: isLoadingContinents } =
-    useGetAllContinentsQuery();
-  const { mutate } =
-    useGetCountryByRegionMutation();
-
-  useEffect(() => {
-    SetCountriesCopy(countries);
-  }, [countries]);
-
-  const getCountriesByContinent = (continent) => {
-    if(continent.toLowerCase() ==='all continents'){
-        SetCountriesCopy(countries)
+    const [searchTerm, setSearchTerm] = useState('');
+    const [isSearching, setIsSearching] = useState(false);
+    const [countriesCopy, setCountriesCopy] = useState<Country[]>([]);
+  
+    const { data: countries, isLoading } = useGetAllCountriesQuery();
+    const { data: continents, isLoading: isLoadingContinents } = useGetAllContinentsQuery();
+    const { mutate } = useGetCountryByRegionMutation();
+  
+    useEffect(() => {
+      setCountriesCopy(countries);
+    }, [countries]);
+  
+    /** Filter countries by continent */
+    const getCountriesByContinent = useCallback((continent: string) => {
+      if (continent.toLowerCase() === 'all continents') {
+        setCountriesCopy(countries);
         return;
-    }
-    SetCountriesCopy([]);
-    SetIsSearching(true);
-    mutate(continent, {
-      onSuccess: (res) => {
-        SetCountriesCopy(res);
-        SetIsSearching(false);
-      },
-      onError: () => {
-        SetCountriesCopy([]);
-        SetIsSearching(false);
-      },
-    });
-  };
-
-  const filterCountries = (query) => {
-    SetCountriesCopy([]);
-    setSearchTerm(query);
-    SetIsSearching(true);
-    if (query.length > 0) {
-      const filteredArray = countriesCopy.filter((country) =>
-        country.name.common.includes(query)
-      );
-      SetCountriesCopy(filteredArray);
-    } else {
-      SetCountriesCopy(countries);
-    }
-    SetIsSearching(false);
-  };
-
+      }
+      setCountriesCopy([]);
+      setIsSearching(true);
+      mutate(continent, {
+        onSuccess: (res) => {
+          setCountriesCopy(res);
+          setIsSearching(false);
+        },
+        onError: () => {
+          setCountriesCopy([]);
+          setIsSearching(false);
+        },
+      });
+    }, [countries, mutate]);
+  
+    /** Filter countries by search term */
+    const filterCountries = useCallback((query: any) => {
+      setSearchTerm(query);
+      setIsSearching(true);
+  
+      if (query.length > 0) {
+        const filteredArray = countries.filter((country) =>
+          country.name.common.toLowerCase().includes(query.toLowerCase())
+        );
+        setCountriesCopy(filteredArray);
+      } else {
+        setCountriesCopy(countries);
+      }
+  
+      setIsSearching(false);
+    }, [countries]);
+  
   if (isLoading) {
     return (
       <div className="loading-spinner">
@@ -74,7 +75,7 @@ const CountriesList = () => {
         A database of the countries of the world
       </h6>
 
-      <div className={`d-flex gap-2 mt-5`}>
+      <div className={`search-sec d-flex gap-2 mt-5`}>
         <DropdownBtn
           title="Select continent"
           options={continents}
@@ -111,7 +112,7 @@ const CountriesList = () => {
 
           {countriesCopy &&
             countriesCopy.map((country: Country, index: number) => (
-              <Link to={`/app/country/detail?name=${country.name.common}&continent=${country.continents[0]}&cca2=${country.cca2}`} key={index}>
+              <Link to={`/app/country/detail?name=${country.name.common}&continent=${country.region}&cca2=${country.cca2}`} key={index}>
                 <div className={style.row} >
                   <div className={style.column}>
                     <div

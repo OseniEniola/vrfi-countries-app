@@ -1,6 +1,10 @@
+@import '../../../assets/styles/mixins';
+
 .page_wrapper{
     padding: 3rem;
-
+    @include screen-media-max(md) {
+        padding: 1.5rem;
+      }
     .back{
         width: fit-content;
         background-color: black;
@@ -29,9 +33,14 @@
         gap: 1rem;
         flex: 1 1 100%;
         margin-top: 7%;
-
+        @include screen-media-max(md) {
+            flex-direction: column;
+          }
         .flag{
             width: 20%;
+            @include screen-media-max(md) {
+               width: 100%;
+              }
         }
 
         .info_wrap{
@@ -39,6 +48,9 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
+            @include screen-media-max(md) {
+               width: 100%;
+              }
             .info{
                 width: 47%;
             }

@@ -1,50 +1,59 @@
-# React + TypeScript + Vite
+# VRFI Countries App 🌍  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview  
+The **VRFI Countries App** is a React-based web application that allows users to explore countries worldwide using the [REST Countries API](https://restcountries.com/). The app includes login functionality, a searchable/filterable country list, and detailed country information.  
 
-Currently, two official plugins are available:
+## Features  
+👉 **Login Page**: A mock authentication page that redirects users to the country list.  
+👉 **Countries List Page**: Fetches and displays countries, with search & filter functionality.  
+👉 **Country Details Page**: Displays detailed information about a selected country.  
+👉 **Navigation**: Users can navigate back from the details page to the country list.  
+👉 **Loading & Error Handling**: Ensures a smooth user experience with proper state management.  
+👉 **Responsive & Accessible UI**: Follows best practices for mobile and desktop views.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack  
+🚀 **React + Vite** – For fast and modern frontend development.  
+🛋️ **TanStack Query (React Query)** – Handles API requests efficiently with caching.  
+🎨 **Bootstrap & Global CSS** – For styling and responsiveness.  
+📝 **Formik & Yup** – Form handling and validation.  
+⚡ **Lodash (Debouncing)** – Optimizes search input performance.  
+♻️ **React.memo & useCallback** – Prevents unnecessary re-renders for better performance.  
+🛠 **Axios** – For API requests.  
+🎨 **SCSS Modules** – Encapsulated styling per component.  
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Project Setup  
+### 1️⃣ Clone the Repository  
+```sh  
+git clone https://github.com/OseniEniola/vrfi-countries-app.git  
+cd vrfi-countries-app  
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### 2️⃣ Install Dependencies  
+```sh  
+npm install  
 ```
+
+### 3️⃣ Set Up Environment Variables  
+Create a `.env` file in the project root. Use the provided `.example.env` as a reference:  
+```sh  
+cp .example.env .env  
+```
+Modify `.env` and fill in the required values.
+
+### 4️⃣ Run the Project  
+```sh  
+npm run dev  
+```
+Then, open **http://localhost:5173/** in your browser.
+
+
+
+## Approach & Trade-offs  
+1️⃣ **Modular Components** – Created reusable UI components (buttons, input fields, etc.) for maintainability.  
+2️⃣ **Performance Optimizations** – Used `React.memo` and `useCallback` to prevent unnecessary renders.  
+3️⃣ **API Management with TanStack Query** – Ensures efficient data fetching, caching, and refetching.  
+4️⃣ **Debounced Search** – Used `lodash.debounce` to optimize search performance.  
+5️⃣ **Styling Choices** – Used `SCSS Modules` for scoped styling while keeping a `global.css` for general styles.  
+6️⃣ **Error Handling** – Implemented proper loading and error states to improve user experience.  
+
+

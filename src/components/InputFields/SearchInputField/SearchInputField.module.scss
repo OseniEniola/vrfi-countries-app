@@ -1,3 +1,5 @@
+@import '../../../assets//styles//mixins';
+
 .container_wrap {
   display: flex;
   gap: 1rem;
@@ -14,14 +16,14 @@
   box-shadow: 0px 6px 12px 0px #8e989d14;
   backdrop-filter: blur(10px);
 
-  img{
+  img {
     width: 0.66rem;
     position: absolute;
     left: 7%;
     top: 35%;
   }
 
-  .input{
+  .input {
     border: none;
     min-width: 15rem;
     padding: 0.5rem;
@@ -30,9 +32,14 @@
     font-size: 0.8rem;
     background-color: var(--white);
     color: var(--dark-purple);
+    @include screen-media-max(md) {
+      min-width: 9rem;
+    }
 
-    &:focus,&:focus-visible,&:active{
-        border: var(--border-1);
+    &:focus,
+    &:focus-visible,
+    &:active {
+      border: var(--border-1);
     }
   }
 }

@@ -1,7 +1,16 @@
+@import '../../../assets/styles/mixins';
+
 .form_wrapper {
   width: 80%;
   height: 50vh;
   margin: auto;
+  @include screen-media-max(md) {
+    width: 100%;
+  }
+
+  @include screen-media-min-max(lg, xl){
+    width: 100%;
+}
 
   h3 {
     color: var(--dark-purple-2);
@@ -13,4 +22,10 @@
     font-size: 0.88rem;
     font-weight: 400;
   }
+  .sso_wrap {
+    @include screen-media-max(xs1) {
+      flex-direction: column;
+    }
+  }
 }
+

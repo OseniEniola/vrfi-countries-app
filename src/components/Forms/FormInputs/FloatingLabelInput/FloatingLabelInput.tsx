@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './FloatingLabelInput.scss';
 import Eye from '../../../../assets/images/icons/eye.svg';
 
@@ -15,12 +15,15 @@ interface FloatingLabelInputProps {
   type?: InputType;
   value: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   required?: boolean;
   placeholder?: string;
+  error?: any;
+  errorMessage?: string;
 }
 
-const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
+const FloatingLabelInput: React.FC<FloatingLabelInputProps> =React.memo(({
   label,
   id,
   type = InputType.TEXT,
@@ -28,8 +31,19 @@ const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
   onChange,
   name,
   required = false,
+  onBlur,
   placeholder,
+  error,
+  errorMessage,
 }) => {
+  // State for password visibility
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  // Toggle password visibility
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible((prev) => !prev);
+  };
+
   return (
     <div className="floating-input-container">
       <input
@@ -39,6 +53,7 @@ const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
         value={value}
         onChange={onChange}
         required={required}
+        onBlur={onBlur}
         className="floating-input"
         placeholder=""
       />
@@ -46,9 +61,19 @@ const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
         {label}
       </label>
 
-      {type == InputType.PASSWORD && <img className='toggle-password' src={Eye} alt="toggle" />}
+      {type == InputType.PASSWORD && (
+        <img
+          className="toggle-password"
+          src={Eye}
+          alt={isPasswordVisible ? 'Hide password' : 'Show password'}
+          onClick={togglePasswordVisibility}
+        />
+      )}
+      {error && errorMessage && (
+        <p className="text-danger small">{errorMessage}</p>
+      )}
     </div>
   );
-};
+});
 
 export default FloatingLabelInput;

@@ -9,7 +9,7 @@ interface SearchInputProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({
+const SearchInput: React.FC<SearchInputProps> =React.memo(({
   placeholder = 'Search...',
   value,
   onChange,
@@ -20,7 +20,6 @@ const SearchInput: React.FC<SearchInputProps> = ({
   // Debounced function to limit calls to `onChange`
   const debouncedOnChange = useCallback(
     debounce((newValue: any) => {
-        console.log(newValue)
       onChange(newValue);
     }, 300),
     [onChange]
@@ -42,6 +41,6 @@ const SearchInput: React.FC<SearchInputProps> = ({
       />
     </div>
   );
-};
+});
 
 export default SearchInput;

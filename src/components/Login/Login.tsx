@@ -1,7 +1,8 @@
 import { LoginForm } from '../Forms';
 import style from './Login.module.scss';
-
 const LoginPage = () => {
+   
+
   return (
     <div className={style.page_wrapper}>
       <div className={style.row_r}>
