@@ -1,0 +1,50 @@
+.floating-input-container {
+    position: relative;
+    width: 100%;
+  
+    .floating-input {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 18px;
+      padding: 1.2rem 1.2rem;
+      font-size: 0.73rem;
+      margin-top: 4px;
+      outline: none;
+      transition: border-color 0.3s ease-in-out;
+      background-color: var(--white);
+      color: var(--dark-purple-2);
+
+
+  
+      &:focus {
+        border-color: var(--dark-purple);
+      }
+  
+      &:focus + .floating-label,
+      &:not(:placeholder-shown) + .floating-label {
+        top: 5px;
+        font-size: 12px;
+        transform: translateY(5%);
+    }
+    }
+  
+    .floating-label {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: rgba(32, 37, 67,0.35);
+      transition: all 0.3s ease-in-out;
+      pointer-events: none;
+    }
+
+    .toggle-password{
+        position: absolute;
+        right: 5%;
+        top: 42%;
+        cursor: pointer;
+    }
+  }
+  

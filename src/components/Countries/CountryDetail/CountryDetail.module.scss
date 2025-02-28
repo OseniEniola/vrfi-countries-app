@@ -1,0 +1,47 @@
+.page_wrapper{
+    padding: 3rem;
+
+    .back{
+        width: fit-content;
+        background-color: black;
+        padding: 0.5rem 1.2rem;
+        color:var(--white);
+        font-size: 0.7rem;
+        font-weight: 500;
+        margin-bottom: 2.5%;
+        border-radius: 1.3rem;
+    }
+    .title{
+        font-family: Inter;
+        font-weight: 600;
+        font-size: 2rem;
+        color: var(--deep-purple);
+    }
+    .subtext{
+        font-family: Inter;
+        font-weight: 400;
+        font-size: 0.88rem;
+        color: var(--border-1);
+    }
+
+    .details_wrap{
+        display: flex;
+        gap: 1rem;
+        flex: 1 1 100%;
+        margin-top: 7%;
+
+        .flag{
+            width: 20%;
+        }
+
+        .info_wrap{
+            width: 80%;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            .info{
+                width: 47%;
+            }
+        }
+    }
+}

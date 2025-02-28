@@ -1,0 +1,29 @@
+
+
+:root{
+    --dark-purple: #1C122C;
+    --dark-purple-2: #202543;
+    --dark-purple-rgba: 32, 37, 67;
+
+    --dark-blue:#000315;
+    --deep-purple: #2D124C;
+
+    --white: #FFFFFF;
+
+    --border-1: #6B6374;
+    --border-2: #9B9EAC;
+
+    --background-color-1: #F1F2F6;
+
+    --bg-purple-gradient: linear-gradient(90.66deg, #6700E9 11.53%, #D83AFF 229.96%);
+}
+
+//Responsive Breakpoints
+$xs: 375px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+$xxxl: 1600px;
+
