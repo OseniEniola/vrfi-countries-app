@@ -1,17 +1,16 @@
-import { useState } from 'react'
 import './App.css'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter, queryClient } from './router'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       <QueryClientProvider client={queryClient}>
        
             <BrowserRouter />
-          
+            <ReactQueryDevtools position={'left'} initialIsOpen={false} />
       </QueryClientProvider>
     </>
   )
