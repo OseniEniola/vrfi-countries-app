@@ -27,5 +27,15 @@
       flex-direction: column;
     }
   }
+
+  .signup{
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    color: var(--dark-purple-2);
+
+    b{
+      cursor: pointer;
+    }
+  }
 }
 

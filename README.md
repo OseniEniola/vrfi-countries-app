@@ -3,6 +3,13 @@
 ## Overview  
 The **VRFI Countries App** is a React-based web application that allows users to explore countries worldwide using the [REST Countries API](https://restcountries.com/). The app includes login functionality, a searchable/filterable country list, and detailed country information.  
 
+
+## LOGIN CREDENTIALS
+The login form takes any valid email and password. The only validation there is the required field validation
+sample credentials:
+Email: user@mail.com
+Password: Password  
+
 ## Features  
 👉 **Login Page**: A mock authentication page that redirects users to the country list.  
 👉 **Countries List Page**: Fetches and displays countries, with search & filter functionality.  

@@ -6,7 +6,7 @@ import FloatingLabelInput, {
   InputType,
 } from '../FormInputs/FloatingLabelInput/FloatingLabelInput';
 import { BUTTON_TYPE_CLASS } from '@/components/Buttons/types';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 
@@ -82,6 +82,8 @@ const LoginForm = () => {
           Log In
         </Button>
       </div>
+      <p className={style.signup}>Don’t have an account? <b>Sign up</b></p>
+
     </div>
   );
 };

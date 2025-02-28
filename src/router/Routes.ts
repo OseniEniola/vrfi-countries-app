@@ -1,6 +1,6 @@
 import { Loading, Root } from '@/components';
 import { RouteListType } from './type';
-import { LoginPage } from '@/pages';
+import { LoginPage, NotFound } from '@/pages';
 import { CountriesList } from '@/pages/Countries';
 import { CountryDetails } from '@/components/Countries';
 
@@ -19,6 +19,10 @@ const Routes: RouteListType[] = [
       { path: 'country/detail', component: CountryDetails, auth: false },
     ],
   },
+  {
+    path: '*',
+    component: NotFound
+  }
 ];
 
 export default Routes;
