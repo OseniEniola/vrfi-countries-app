@@ -28,7 +28,7 @@ const CountryDetails = () => {
   } = useGetCountryDetails(countryData);
 
   const handleGoBack = useCallback(() => {
-    navigate(-1);
+    navigate('/app/home');
   }, [navigate]);
 
   // Show a loading state
@@ -43,7 +43,7 @@ const CountryDetails = () => {
   // Ensure country exists before rendering
   if (isFetched && _.isEmpty(country)) {
     return (
-      <div className="text-center text-muted fs-2 fw-bold mt-4 p-3 rounded">
+      <div className="text-center text-muted fs-1 fw-bold mt-25p p-3 rounded">
         Country details not available
       </div>
     );
@@ -51,7 +51,7 @@ const CountryDetails = () => {
   if (isFetched && isError || _.isEmpty(country)) {
     return (
       <div className='text-center mt-5'>
-        <div className="text-center text-muted fs-2 fw-bold mt-4 p-3 rounded">
+        <div className="text-center text-muted fs-1 fw-bold mt-25p p-3 rounded">
           Error fetching country details
         </div>
         <button className={style.back} onClick={handleGoBack}>

@@ -1,7 +1,7 @@
 import { DropdownBtn } from '@/components/Buttons';
 import style from './CountriesList.module.scss';
 import { SearchInputField } from '@/components/InputFields/SearchInputField';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Country } from '@/services/models/Countries.dto';
 import {
   useGetAllContinentsQuery,
@@ -16,6 +16,10 @@ const CountriesList = () => {
     const [isSearching, setIsSearching] = useState(false);
     const [countriesCopy, setCountriesCopy] = useState<Country[]>([]);
   
+    const tableRef = useRef<HTMLDivElement | null>(null);
+    const [isTableScrolled, setIsTableScrolled] = useState(false);
+
+
     const { data: countries, isLoading } = useGetAllCountriesQuery();
     const { data: continents, isLoading: isLoadingContinents } = useGetAllContinentsQuery();
     const { mutate } = useGetCountryByRegionMutation();
@@ -23,6 +27,24 @@ const CountriesList = () => {
     useEffect(() => {
       setCountriesCopy(countries);
     }, [countries]);
+
+    useEffect(() => {
+      const handleScroll = () => {
+        console.log('in here',tableRef)
+
+        if (tableRef.current) {
+          setIsTableScrolled(tableRef.current.scrollTop > 0);
+        }
+      };
+  
+      if (tableRef.current) {
+        tableRef.current.addEventListener("scroll", handleScroll);
+      }
+  
+      return () => {
+        tableRef.current?.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
   
     /** Filter countries by continent */
     const getCountriesByContinent = useCallback((continent: string) => {
@@ -89,8 +111,8 @@ const CountriesList = () => {
       </div>
 
       <section>
-        <div className={style.country_table}>
-          <div className={style.header}>
+        <div ref={tableRef} className={style.country_table}>
+          <div className={`${style.header} ${isTableScrolled ? style.scrolled : ""}`}>
             <div className={style.column}>Country Identifier</div>
             <div className={style.column}>Country</div>
             <div className={style.column}>Continent</div>

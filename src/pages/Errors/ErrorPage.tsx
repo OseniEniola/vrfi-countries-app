@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useRouteError } from 'react-router-dom';
 
 const ErrorPage = () => {
@@ -15,8 +14,7 @@ const ErrorPage = () => {
 
     return (
       hostname === 'localhost' || // Local development
-      hostname === '127.0.0.1' || // Local development (IP)
-      hostname === 'sandbox.icanopii.com' // Specific dev server
+      hostname === '127.0.0.1' // Local development (IP)
     );
   };
 
